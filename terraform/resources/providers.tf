@@ -2,6 +2,13 @@ provider "azurerm" {
   features {}
 }
 
+provider "azurerm" {
+  subscription_id = "9da7523a-cb61-4c3e-b1d4-afa5fc6d2da9"
+  alias           = "pc"
+
+  features {}
+}
+
 provider "helm" {
   # https://dev.to/danielepolencic/getting-started-with-terraform-and-kubernetes-on-azure-aks-3l4d
   kubernetes {

@@ -6,6 +6,10 @@ module "resources" {
   maybe_versioned_prefix = "pcc-staging-2"
   # subscription = "Planetary Computer"
 
+  # TLS certs
+  certificate_kv    = "pcc-deploy-secrets"
+  certificate_kv_rg = "pc-manual-resources"
+
   # AKS ----------------------------------------------------------------------
   kubernetes_version                                   = null
   aks_azure_active_directory_role_based_access_control = true

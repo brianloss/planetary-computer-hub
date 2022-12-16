@@ -36,7 +36,7 @@ resource "helm_release" "dhub" {
 
   set {
     name  = "daskhub.jupyterhub.hub.config.GenericOAuthenticator.oauth_callback_url"
-    value = "https://${var.jupyterhub_host}/compute/hub/oauth_callback"
+    value = "https://${var.jupyterhub_host}/hub/oauth_callback"
   }
 
   set {
@@ -92,7 +92,7 @@ resource "helm_release" "dhub" {
 
   set {
     name  = "daskhub.jupyterhub.proxy.service.annotations.service\\.beta\\.kubernetes\\.io/azure-dns-label-name"
-    value = var.dns_label
+    value = "${var.dns_label}-direct"
   }
 
   set {
@@ -115,14 +115,15 @@ resource "helm_release" "dhub" {
     value = random_password.dask_gateway_api_token.result
   }
 
-  set {
-    name  = "daskhub.dask-gateway.traefik.service.annotations.service\\.beta\\.kubernetes\\.io/azure-dns-label-name"
-    value = "${var.dns_label}-dask"
-  }
+  # set {
+  #   name  = "daskhub.dask-gateway.traefik.service.annotations.service\\.beta\\.kubernetes\\.io/azure-dns-label-name"
+  #   value = "${var.dns_label}-dask"
+  # }
 
 }
 
 data "azurerm_storage_account" "pc-compute" {
   name                = "${replace(local.prefix, "-", "")}storage"
   resource_group_name = "${local.prefix}-shared-rg"
+  provider            = azurerm.pc
 }

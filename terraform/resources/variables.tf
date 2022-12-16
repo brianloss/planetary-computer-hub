@@ -152,6 +152,16 @@ variable "pc_resources_kv" {
   description = "The Azure Key Vault name with pre-configured values."
 }
 
+variable "certificate_kv" {
+  type        = string
+  description = "The name of the Key Vault with the public certificate used for TLS."
+}
+
+variable "certificate_kv_rg" {
+  type        = string
+  description = "The name of the Resource Group with the Key Vault with the public certificate used for TLS."
+}
+
 variable "user_placeholder_replicas" {
   type        = number
   default     = 0
