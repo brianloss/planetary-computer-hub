@@ -16,6 +16,8 @@ daskhub:
     ingress:
       enabled: true
       ingressClassName: "azure-application-gateway"
+      tls:
+        - secretName: planetarycomputer-hub-test-public
 
     hub:
       consecutiveFailureLimit: 0
